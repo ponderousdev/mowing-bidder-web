@@ -1,0 +1,48 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import ItemGrid2 from '~/components/ui/ItemGrid2.astro';
+---
+
+<WidgetWrapper id="benefits">
+  <Headline
+    tagline="Why Mowing Bidder"
+    title="Quote faster, win more jobs."
+    subtitle="A simple workflow that keeps your pricing consistent and your responses immediate."
+  />
+  <ItemGrid2
+    columns={3}
+    items={[
+      {
+        title: 'Speed',
+        description: 'Quote in seconds.',
+        icon: 'tabler:bolt',
+      },
+      {
+        title: 'Consistency',
+        description: 'Formula-based pricing.',
+        icon: 'tabler:adjustments',
+      },
+      {
+        title: 'Convenience',
+        description: 'Send prices on the spot.',
+        icon: 'tabler:device-mobile',
+      },
+      {
+        title: 'Less admin',
+        description: 'Reduce back-and-forth.',
+        icon: 'tabler:message-off',
+      },
+      {
+        title: 'Better win-rate',
+        description: 'Respond before competitors.',
+        icon: 'tabler:trophy',
+      },
+      {
+        title: 'Simple setup',
+        description: 'Works with how you already price.',
+        icon: 'tabler:settings',
+      },
+    ]}
+  />
+</WidgetWrapper>

@@ -1,0 +1,27 @@
+---
+import Button from '~/components/ui/Button.astro';
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
+import { getHomePermalink } from '~/utils/permalinks';
+---
+
+<header
+  id="header"
+  class="sticky top-0 z-40 flex-none mx-auto w-full border-b border-gray-50/0 transition-[opacity] ease-in-out"
+  data-aw-sticky-header
+>
+  <div class="absolute inset-0"></div>
+  <div class="relative text-default py-3 px-3 md:px-6 mx-auto w-full max-w-7xl flex items-center justify-between">
+    <a class="flex items-center" href={getHomePermalink()}>
+      <span class="text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">Mowing Bidder</span>
+    </a>
+    <div class="flex items-center gap-2">
+      <ToggleTheme iconClass="w-5 h-5 md:w-5 md:h-5" />
+      <Button
+        variant="primary"
+        href="#get-updates"
+        text="Get Updates"
+        class="py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto"
+      />
+    </div>
+  </div>
+</header>
