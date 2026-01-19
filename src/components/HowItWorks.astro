@@ -1,0 +1,27 @@
+---
+import Steps from '~/components/widgets/Steps.astro';
+---
+
+<Steps
+  id="how-it-works"
+  tagline="How it works"
+  title="Turn an address into a quote in three steps."
+  subtitle="No measuring, no guesswork, no waiting."
+  items={[
+    {
+      title: 'Enter the address',
+      description: 'Paste a property address and start a quote in seconds.',
+      icon: 'tabler:map-pin',
+    },
+    {
+      title: 'We find the property size',
+      description: 'Mowing Bidder calculates square footage automatically.',
+      icon: 'tabler:scan',
+    },
+    {
+      title: 'Your formula generates weekly + bi-weekly pricing',
+      description: 'Send consistent prices based on your own rates.',
+      icon: 'tabler:calculator',
+    },
+  ]}
+/>

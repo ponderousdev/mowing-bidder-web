@@ -1,0 +1,38 @@
+---
+import FAQs from '~/components/widgets/FAQs.astro';
+---
+
+<FAQs
+  id="faq"
+  title="Frequently asked questions"
+  subtitle="Everything you need to know before launch."
+  tagline="FAQ"
+  classes={{ container: 'max-w-6xl' }}
+  items={[
+    {
+      title: 'Where does the square footage come from?',
+      description:
+        'We pull property measurements from trusted mapping data so you get an accurate mowing area without manual measuring.',
+    },
+    {
+      title: 'Can I use my own pricing formula?',
+      description: 'Yes. You set the rules once and Mowing Bidder applies them every time.',
+    },
+    {
+      title: 'How fast is it?',
+      description: 'Most quotes are ready in seconds after entering an address.',
+    },
+    {
+      title: 'Will it integrate with CRMs later?',
+      description: 'Integrations are on the roadmap, starting with the most common tools in lawn care.',
+    },
+    {
+      title: 'When does it launch?',
+      description: 'We are finishing early access now. Join updates to be first to know.',
+    },
+    {
+      title: 'Does it support weekly and bi-weekly mowing?',
+      description: 'Yes. Mowing Bidder shows both options so you can respond with confidence.',
+    },
+  ]}
+/>

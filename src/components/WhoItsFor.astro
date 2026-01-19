@@ -1,0 +1,36 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import ItemGrid2 from '~/components/ui/ItemGrid2.astro';
+---
+
+<WidgetWrapper id="who-its-for">
+  <Headline
+    tagline="Who it's for"
+    title="Built for the teams quoting every day."
+    subtitle="Mowing Bidder fits into the way you already sell and schedule mowing work."
+  />
+  <ItemGrid2
+    columns={3}
+    items={[
+      {
+        title: 'Owner-operators',
+        description:
+          'Quote faster from your truck and stay consistent with the rates you trust. Close jobs before your competitors even respond.',
+        icon: 'tabler:truck',
+      },
+      {
+        title: 'Office/admin teams',
+        description:
+          'Handle inbound leads without the back-and-forth. Send accurate pricing the moment the phone rings.',
+        icon: 'tabler:building-store',
+      },
+      {
+        title: 'Estimators + sales staff',
+        description:
+          'Reply with confidence and speed so your pipeline stays warm and your win-rate climbs.',
+        icon: 'tabler:briefcase',
+      },
+    ]}
+  />
+</WidgetWrapper>

@@ -1,0 +1,75 @@
+---
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import Button from '~/components/ui/Button.astro';
+---
+
+<WidgetWrapper id="demo">
+  <Headline
+    tagline="Live demo"
+    title="See a quote generated in seconds."
+    subtitle="Try the mock experience below. No data is sent anywhere."
+  />
+  <div class="grid gap-8 lg:grid-cols-2">
+    <div class="rounded-2xl border border-gray-200/60 bg-white/90 p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900/70">
+      <label class="text-sm font-semibold text-heading" for="demo-address">Property address</label>
+      <input
+        id="demo-address"
+        type="text"
+        class="mt-2 w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-base text-heading shadow-sm focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/30 dark:border-slate-700 dark:bg-slate-900"
+        placeholder="123 Greenway Dr, Austin, TX"
+        autocomplete="off"
+      />
+      <p class="mt-3 text-sm text-muted">
+        Demo only - real app pulls accurate sq ft + your pricing formula.
+      </p>
+      <div class="mt-6">
+        <Button type="button" variant="primary" text="Generate quote" data-demo-button />
+      </div>
+    </div>
+    <div class="rounded-2xl border border-gray-200/60 bg-white/90 p-6 shadow-sm dark:border-slate-700/60 dark:bg-slate-900/70">
+      <p class="text-sm font-semibold text-heading">Results</p>
+      <div class="mt-4 grid gap-4 sm:grid-cols-3">
+        <div class="rounded-xl border border-gray-200/60 bg-white px-4 py-3 dark:border-slate-700/60 dark:bg-slate-900">
+          <p class="text-xs uppercase tracking-wide text-muted">Property size</p>
+          <p class="mt-2 text-lg font-semibold text-heading" data-demo-sqft aria-live="polite">--</p>
+        </div>
+        <div class="rounded-xl border border-gray-200/60 bg-white px-4 py-3 dark:border-slate-700/60 dark:bg-slate-900">
+          <p class="text-xs uppercase tracking-wide text-muted">Weekly price</p>
+          <p class="mt-2 text-lg font-semibold text-heading" data-demo-weekly aria-live="polite">--</p>
+        </div>
+        <div class="rounded-xl border border-gray-200/60 bg-white px-4 py-3 dark:border-slate-700/60 dark:bg-slate-900">
+          <p class="text-xs uppercase tracking-wide text-muted">Bi-weekly price</p>
+          <p class="mt-2 text-lg font-semibold text-heading" data-demo-biweekly aria-live="polite">--</p>
+        </div>
+      </div>
+      <p class="mt-4 text-sm text-muted">
+        Output uses a sample formula so you can see the flow end-to-end.
+      </p>
+    </div>
+  </div>
+</WidgetWrapper>
+
+<script>
+  const button = document.querySelector('[data-demo-button]');
+  const sqftEl = document.querySelector('[data-demo-sqft]');
+  const weeklyEl = document.querySelector('[data-demo-weekly]');
+  const biweeklyEl = document.querySelector('[data-demo-biweekly]');
+
+  const formatCurrency = (value) =>
+    new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(value);
+
+  const roundToFive = (value) => Math.round(value / 5) * 5;
+
+  if (button && sqftEl && weeklyEl && biweeklyEl) {
+    button.addEventListener('click', () => {
+      const sqft = Math.floor(Math.random() * (20000 - 2000 + 1)) + 2000;
+      const weekly = roundToFive(sqft * 0.012);
+      const biweekly = roundToFive(sqft * 0.018);
+
+      sqftEl.textContent = `${sqft.toLocaleString()} sq ft`;
+      weeklyEl.textContent = `${formatCurrency(weekly)} / visit`;
+      biweeklyEl.textContent = `${formatCurrency(biweekly)} / visit`;
+    });
+  }
+</script>
