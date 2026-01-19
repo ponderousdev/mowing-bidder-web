@@ -1,0 +1,86 @@
+<section id="get-updates" class="final-cta">
+	<div class="container final-inner">
+		<div>
+			<p class="eyebrow">Get updates</p>
+			<h2 class="display">Be first to try Mowing Bidder.</h2>
+			<p class="subtitle">
+				We’re opening early access to a small group of lawn care teams. We’ll email you as soon as
+				signups open.
+			</p>
+		</div>
+		<div class="cta-actions">
+			<button class="button primary" type="button" data-open-modal>Get Updates</button>
+			<a class="button secondary" href="mailto:hello@example.com">Contact us</a>
+		</div>
+	</div>
+	<dialog class="signup-modal" id="signup-modal" aria-labelledby="signup-title">
+		<form method="dialog" class="modal-body">
+			<h3 id="signup-title">Email signup coming soon.</h3>
+			<p class="muted">Check back soon and we’ll have a spot ready for you.</p>
+			<div class="modal-actions">
+				<button class="button primary" value="close">Got it</button>
+			</div>
+		</form>
+	</dialog>
+</section>
+
+<script is:inline>
+	const modal = document.querySelector("#signup-modal");
+	const openButton = document.querySelector("[data-open-modal]");
+
+	if (openButton) {
+		openButton.addEventListener("click", () => {
+			if (modal && typeof modal.showModal === "function") {
+				modal.showModal();
+			} else {
+				alert("Email signup coming soon. Check back soon.");
+			}
+		});
+	}
+</script>
+
+<style>
+	.final-cta {
+		background: linear-gradient(120deg, rgba(27, 95, 74, 0.12), rgba(248, 179, 77, 0.18));
+		border-top: 1px solid var(--line);
+	}
+
+	.final-inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		gap: 2rem;
+		flex-wrap: wrap;
+	}
+
+	.cta-actions {
+		display: flex;
+		gap: 1rem;
+		flex-wrap: wrap;
+	}
+
+	.signup-modal {
+		border: none;
+		border-radius: 1.5rem;
+		padding: 0;
+		box-shadow: var(--shadow);
+		max-width: min(420px, 90vw);
+	}
+
+	.signup-modal::backdrop {
+		background: rgba(20, 24, 20, 0.4);
+		backdrop-filter: blur(6px);
+	}
+
+	.modal-body {
+		display: grid;
+		gap: 1rem;
+		padding: 2rem;
+		background: var(--paper);
+	}
+
+	.modal-actions {
+		display: flex;
+		justify-content: flex-end;
+	}
+</style>

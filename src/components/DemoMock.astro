@@ -1,0 +1,126 @@
+<section id="demo" class="demo">
+	<div class="container demo-grid">
+		<div class="demo-copy">
+			<p class="eyebrow">Demo mock</p>
+			<h2 class="display">See the quoting flow in action.</h2>
+			<p class="subtitle">
+				Try the demo to see how quickly a quote appears once an address is entered.
+			</p>
+			<ul class="demo-notes">
+				<li>No account needed.</li>
+				<li>Instant weekly + bi-weekly pricing.</li>
+				<li>Formula driven — just like the real product.</li>
+			</ul>
+		</div>
+		<div class="card demo-panel">
+			<label class="field">
+				<span>Property address</span>
+				<input
+					type="text"
+					placeholder="123 Maple Ave, Columbus, OH"
+					data-demo-address
+				/>
+			</label>
+			<button class="button primary" type="button" data-demo-generate>
+				Generate quote
+			</button>
+			<div class="demo-outputs">
+				<div>
+					<span class="muted">Property size</span>
+					<strong data-demo-sqft>6,800 sq ft</strong>
+				</div>
+				<div>
+					<span class="muted">Weekly price</span>
+					<strong data-demo-weekly>$97</strong>
+				</div>
+				<div>
+					<span class="muted">Bi-weekly price</span>
+					<strong data-demo-biweekly>$141</strong>
+				</div>
+			</div>
+			<p class="muted demo-note">
+				Demo only — real app pulls accurate sq ft + your pricing formula.
+			</p>
+		</div>
+	</div>
+</section>
+
+<script is:inline>
+	const demoButton = document.querySelector("[data-demo-generate]");
+	const sqftEl = document.querySelector("[data-demo-sqft]");
+	const weeklyEl = document.querySelector("[data-demo-weekly]");
+	const biweeklyEl = document.querySelector("[data-demo-biweekly]");
+
+	const currency = new Intl.NumberFormat("en-US", {
+		style: "currency",
+		currency: "USD",
+		maximumFractionDigits: 0,
+	});
+	const number = new Intl.NumberFormat("en-US");
+
+	const updateQuote = () => {
+		if (!sqftEl || !weeklyEl || !biweeklyEl) return;
+		const sqft = Math.floor(Math.random() * (20000 - 2000 + 1)) + 2000;
+		const weekly = Math.round(sqft * 0.012 + 15);
+		const biweekly = Math.round(weekly * 1.45);
+		sqftEl.textContent = `${number.format(sqft)} sq ft`;
+		weeklyEl.textContent = currency.format(weekly);
+		biweeklyEl.textContent = currency.format(biweekly);
+	};
+
+	if (demoButton) {
+		demoButton.addEventListener("click", updateQuote);
+	}
+</script>
+
+<style>
+	.demo-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+		gap: 2.5rem;
+		align-items: center;
+	}
+
+	.demo-notes {
+		list-style: none;
+		display: grid;
+		gap: 0.6rem;
+		color: var(--muted);
+		font-weight: 500;
+	}
+
+	.demo-panel {
+		display: grid;
+		gap: 1.2rem;
+	}
+
+	.field {
+		display: grid;
+		gap: 0.4rem;
+		font-weight: 600;
+		color: var(--muted);
+	}
+
+	.field input {
+		padding: 0.8rem 1rem;
+		border-radius: 0.9rem;
+		border: 1px solid var(--line);
+		background: var(--field);
+		font-size: 1rem;
+	}
+
+	.demo-outputs {
+		display: grid;
+		gap: 0.75rem;
+	}
+
+	.demo-outputs strong {
+		display: block;
+		font-size: 1.2rem;
+		font-weight: 700;
+	}
+
+	.demo-note {
+		font-size: 0.9rem;
+	}
+</style>
