@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
+  <title id="title">Stylized grass</title>
+  <desc id="desc">A minimal grass graphic with layered blades.</desc>
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 320 C38 304 46 292 60 270" stroke="#1f7a45" stroke-width="8" />
+    <path d="M70 320 C80 304 90 292 105 266" stroke="#2f8f55" stroke-width="8" />
+    <path d="M110 320 C120 304 130 292 145 268" stroke="#1f7a45" stroke-width="8" />
+    <path d="M150 320 C160 306 170 294 185 272" stroke="#2f8f55" stroke-width="8" />
+    <path d="M190 320 C202 306 214 294 232 268" stroke="#1f7a45" stroke-width="8" />
+    <path d="M230 320 C242 306 254 292 272 262" stroke="#2f8f55" stroke-width="8" />
+    <path d="M270 320 C282 306 294 292 312 270" stroke="#1f7a45" stroke-width="8" />
+    <path d="M310 320 C322 306 334 292 352 266" stroke="#2f8f55" stroke-width="8" />
+    <path d="M350 320 C362 306 374 292 392 270" stroke="#1f7a45" stroke-width="8" />
+    <path d="M390 320 C402 306 414 292 432 262" stroke="#2f8f55" stroke-width="8" />
+    <path d="M430 320 C442 306 454 292 472 268" stroke="#1f7a45" stroke-width="8" />
+    <path d="M470 320 C482 306 494 292 512 270" stroke="#2f8f55" stroke-width="8" />
+    <path d="M510 320 C522 306 534 292 552 266" stroke="#1f7a45" stroke-width="8" />
+    <path d="M550 320 C562 306 574 292 592 270" stroke="#2f8f55" stroke-width="8" />
+    <path d="M590 320 C602 306 614 294 628 276" stroke="#1f7a45" stroke-width="8" />
+  </g>
+  <path
+    d="M0 336 C80 326 160 326 240 334 C320 342 400 344 480 334 C560 324 600 326 640 332 L640 360 L0 360 Z"
+    fill="#1a6a3a"
+    opacity="0.9"
+  />
+</svg>

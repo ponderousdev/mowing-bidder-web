@@ -1,5 +1,6 @@
 ---
 import HeroWidget from '~/components/widgets/Hero.astro';
+import grassGraphic from '~/assets/images/grass.svg';
 ---
 
 <HeroWidget
@@ -11,4 +12,6 @@ import HeroWidget from '~/components/widgets/Hero.astro';
     { variant: 'primary', text: 'Get Updates', href: '#get-updates' },
     { variant: 'secondary', text: 'See how it works', href: '#how-it-works' },
   ]}
+  imageOnTop
+  image={{ src: grassGraphic, alt: 'Stylized grass graphic' }}
 />
