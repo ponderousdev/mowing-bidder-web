@@ -1,0 +1,19 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import TopNav from '~/components/TopNav.astro';
+import DemoMock from '~/components/DemoMock.astro';
+import Footer from '~/components/Footer.astro';
+
+const metadata = {
+  title: 'Live Demo',
+  description: 'Try the live demo to see an instant mowing quote.',
+};
+---
+
+<Layout metadata={metadata}>
+  <TopNav />
+  <main>
+    <DemoMock />
+  </main>
+  <Footer />
+</Layout>
