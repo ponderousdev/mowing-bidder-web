@@ -7,21 +7,201 @@ import Steps from '~/components/widgets/Steps.astro';
   tagline="How it works"
   title="Turn an address into a quote in three steps."
   subtitle="No measuring, no guesswork, no waiting."
+  classes={{
+    container: 'max-w-5xl',
+    headline: {
+      container: 'text-center',
+    },
+    items: {
+      container: 'hiw-anim mx-auto max-w-xl space-y-6 md:space-y-10',
+      panel:
+        'flex flex-col items-center text-center gap-3 md:gap-4 rounded-2xl border border-gray-200/60 bg-white/90 px-5 py-4 shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80',
+      title: 'text-2xl md:text-[1.65rem] font-semibold',
+      description: 'text-base md:text-[1.05rem]',
+      icon: 'w-14 h-14 p-3 rounded-full border-2 border-primary text-primary dark:text-green-200 dark:border-green-600',
+    },
+  }}
   items={[
     {
       title: 'Enter the address',
-      description: 'Paste a property address and start a quote in seconds.',
+      description:
+        'Paste a property address and start a quote in seconds.' +
+        '<div class="hiw-input mt-4 rounded-xl border border-gray-200/60 bg-white/90 px-4 py-3 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80">' +
+        '<p class="text-[11px] uppercase tracking-wide text-muted">Property address</p>' +
+        '<div class="mt-2 flex items-center text-base text-heading">' +
+        '<span class="hiw-typed" data-hiw-typed aria-hidden="true"></span>' +
+        '<span class="hiw-caret" aria-hidden="true"></span>' +
+        '</div>' +
+        '</div>',
       icon: 'tabler:map-pin',
+      classes: {
+        panel: 'hiw-trace hiw-trace-1',
+        line: 'hiw-line hiw-line-1 bg-primary/40 dark:bg-green-500/40',
+      },
     },
     {
       title: 'We find the property size',
-      description: 'Mowing Bidder calculates square footage automatically.',
+      description:
+        'Mowing Bidder calculates square footage automatically.' +
+        '<div class="hiw-sqft mt-4 rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]">' +
+        '<p class="text-[11px] uppercase tracking-wide text-muted">Property size</p>' +
+        '<p class="mt-1 text-lg font-semibold text-heading"><span class="hiw-sqft-amount">12,236 sq ft</span></p>' +
+        '</div>',
       icon: 'tabler:scan',
+      classes: {
+        panel: 'hiw-trace hiw-trace-2',
+        line: 'hiw-line hiw-line-2 bg-primary/40 dark:bg-green-500/40',
+      },
     },
     {
       title: 'Your formula generates weekly + bi-weekly pricing',
-      description: 'Send consistent prices based on your own rates.',
+      description:
+        'Send consistent prices based on your own rates.' +
+        '<div class="hiw-pricing mt-4 grid gap-3 sm:grid-cols-2">' +
+        '<div class="hiw-price-card rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]">' +
+        '<p class="text-[11px] uppercase tracking-wide text-muted">Weekly price</p>' +
+        '<p class="mt-1 text-lg font-semibold text-heading"><span class="hiw-price-amount">$50 / visit</span></p>' +
+        '</div>' +
+        '<div class="hiw-price-card rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]">' +
+        '<p class="text-[11px] uppercase tracking-wide text-muted">Bi-weekly price</p>' +
+        '<p class="mt-1 text-lg font-semibold text-heading"><span class="hiw-price-amount">$80 / visit</span></p>' +
+        '</div>' +
+        '</div>',
       icon: 'tabler:calculator',
+      classes: {
+        panel: 'hiw-trace hiw-trace-3',
+      },
     },
   ]}
 />
+
+<style is:global>
+  .hiw-caret {
+    width: 1px;
+    height: 16px;
+    margin-left: 2px;
+    background: #1f7a45;
+    animation: hiw-caret 1s steps(1) infinite;
+  }
+
+  @keyframes hiw-caret {
+    50% {
+      opacity: 0;
+    }
+  }
+
+  .hiw-trace {
+    position: relative;
+  }
+
+  .hiw-trace::after {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    padding: 2px;
+    border-radius: inherit;
+    --hiw-trace-length: 90deg;
+    --hiw-trace-fade: 14deg;
+    background: conic-gradient(
+      from var(--hiw-angle),
+      rgba(31, 122, 69, 0) 0deg,
+      rgba(31, 122, 69, 0.9) var(--hiw-trace-fade),
+      rgba(31, 122, 69, 0.9) calc(var(--hiw-trace-length) - var(--hiw-trace-fade)),
+      rgba(31, 122, 69, 0) var(--hiw-trace-length),
+      rgba(31, 122, 69, 0) 180deg,
+      rgba(31, 122, 69, 0.9) calc(180deg + var(--hiw-trace-fade)),
+      rgba(31, 122, 69, 0.9) calc(180deg + var(--hiw-trace-length) - var(--hiw-trace-fade)),
+      rgba(31, 122, 69, 0) calc(180deg + var(--hiw-trace-length)),
+      rgba(31, 122, 69, 0) 360deg
+    );
+    background-repeat: no-repeat;
+    animation: hiw-trace 10s linear infinite;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 260ms ease;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  @property --hiw-angle {
+    syntax: '<angle>';
+    inherits: true;
+    initial-value: 0deg;
+  }
+
+  @keyframes hiw-trace {
+    to {
+      --hiw-angle: 360deg;
+    }
+  }
+
+  .hiw-anim.hiw-reset .hiw-trace::after {
+    opacity: 0;
+  }
+
+  .hiw-anim.hiw-run-1 .hiw-trace-1::after,
+  .hiw-anim.hiw-run-2 .hiw-trace-2::after,
+  .hiw-anim.hiw-run-3 .hiw-trace-3::after {
+    opacity: 1;
+  }
+
+  .hiw-line {
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 1200ms ease;
+  }
+
+  .hiw-anim.hiw-reset .hiw-line {
+    transition: none;
+    transform: scaleY(0);
+  }
+
+  .hiw-anim.hiw-run-1 .hiw-line-1 {
+    transform: scaleY(1);
+  }
+
+  .hiw-anim.hiw-run-2 .hiw-line-2 {
+    transform: scaleY(1);
+  }
+
+  .hiw-pricing {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hiw-price-amount {
+    opacity: 0;
+    transform: translateY(6px);
+    display: inline-block;
+    transition:
+      opacity 1400ms ease,
+      transform 1400ms ease;
+  }
+
+  .hiw-anim.hiw-run-3 .hiw-price-amount {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hiw-sqft-amount {
+    opacity: 0;
+    transform: translateY(6px);
+    display: inline-block;
+    transition:
+      opacity 1400ms ease,
+      transform 1400ms ease;
+  }
+
+  .hiw-anim.hiw-run-2 .hiw-sqft-amount {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .hiw-anim.hiw-run-3 .hiw-sqft-amount {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>

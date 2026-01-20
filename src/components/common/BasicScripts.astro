@@ -94,6 +94,117 @@ import { UI } from 'astrowind:config';
     }
   }
 
+  function initHowItWorksPipeline() {
+    const container = document.querySelector('.hiw-anim');
+    if (!container) return;
+
+    const typedEl = document.querySelector('[data-hiw-typed]');
+    const fullText = '7421 W 151st St, Overland Park, KS';
+    const stepMs = 70;
+    const holdMs = 600;
+    const step2HoldMs = 2000;
+    const step3HoldMs = 3500;
+    const loopPauseMs = 900;
+    const timeouts = new Set();
+    let typingTimeout = null;
+    let running = false;
+
+    const schedule = (fn, delay) => {
+      const id = window.setTimeout(fn, delay);
+      timeouts.add(id);
+      return id;
+    };
+
+    const clearTimers = () => {
+      timeouts.forEach((id) => clearTimeout(id));
+      timeouts.clear();
+      if (typingTimeout) {
+        clearTimeout(typingTimeout);
+        typingTimeout = null;
+      }
+    };
+
+    const stopPipeline = () => {
+      running = false;
+      clearTimers();
+      container.classList.remove('hiw-run-1', 'hiw-run-2', 'hiw-run-3', 'hiw-reset');
+      if (typedEl) {
+        typedEl.textContent = '';
+      }
+    };
+
+    const runTyping = (done) => {
+      if (!typedEl) {
+        done();
+        return;
+      }
+
+      let index = 0;
+      const total = fullText.length;
+
+      const typeNext = () => {
+        if (!running) return;
+        if (index <= total) {
+          typedEl.textContent = fullText.slice(0, index);
+          index += 1;
+          typingTimeout = window.setTimeout(typeNext, stepMs);
+        } else {
+          typingTimeout = schedule(done, holdMs);
+        }
+      };
+
+      typeNext();
+    };
+
+    const runPipeline = () => {
+      if (!running) return;
+      container.classList.remove('hiw-run-1', 'hiw-run-2', 'hiw-run-3');
+      container.classList.add('hiw-reset');
+      void container.offsetWidth;
+      container.classList.remove('hiw-reset');
+      container.classList.add('hiw-run-1');
+
+      runTyping(() => {
+        if (!running) return;
+        container.classList.remove('hiw-run-1');
+        container.classList.add('hiw-run-2');
+        schedule(() => {
+          if (!running) return;
+          container.classList.remove('hiw-run-2');
+          container.classList.add('hiw-run-3');
+          schedule(() => {
+            if (!running) return;
+            container.classList.remove('hiw-run-3');
+            if (typedEl) {
+              typedEl.textContent = '';
+            }
+            schedule(runPipeline, loopPauseMs);
+          }, step3HoldMs);
+        }, step2HoldMs);
+      });
+    };
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) {
+            if (!running) {
+              running = true;
+              runPipeline();
+            }
+          } else {
+            stopPipeline();
+          }
+        },
+        { threshold: 0.35 }
+      );
+      observer.observe(container);
+    } else {
+      running = true;
+      runPipeline();
+    }
+  }
+
   function initDemoMock() {
     const button = document.querySelector('[data-demo-button]');
     const sqftEl = document.querySelector('[data-demo-sqft]');
@@ -227,6 +338,7 @@ import { UI } from 'astrowind:config';
     });
 
     initJobberPipeline();
+    initHowItWorksPipeline();
     initDemoMock();
   };
   const onPageShow = function () {
