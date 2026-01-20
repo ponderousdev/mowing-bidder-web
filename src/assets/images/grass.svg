@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 360" role="img" aria-labelledby="title desc">
   <title id="title">Stylized grass</title>
   <desc id="desc">A minimal grass graphic with layered blades.</desc>
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 20)">
     <path d="M30 320 C38 304 46 292 60 270" stroke="#1f7a45" stroke-width="8" />
     <path d="M70 320 C80 304 90 292 105 266" stroke="#2f8f55" stroke-width="8" />
     <path d="M110 320 C120 304 130 292 145 268" stroke="#1f7a45" stroke-width="8" />

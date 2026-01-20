@@ -40,6 +40,60 @@ import { UI } from 'astrowind:config';
     }
   }
 
+  function hasMobileMenu() {
+    return !!document.querySelector('[data-aw-toggle-menu]');
+  }
+
+  function initJobberPipeline() {
+    const pipeline = document.querySelector('.jobber-pipeline');
+    if (!pipeline) return;
+
+    const button = document.querySelector('[data-jobber-replay]');
+    let loopTimeout = null;
+
+    const runPipeline = () => {
+      pipeline.classList.remove('jobber-run-1', 'jobber-run-2', 'jobber-loading');
+      pipeline.classList.add('jobber-reset');
+      void pipeline.offsetWidth;
+      pipeline.classList.remove('jobber-reset');
+      pipeline.classList.add('jobber-run-1');
+    window.setTimeout(() => {
+      pipeline.classList.add('jobber-loading');
+      window.setTimeout(() => {
+        pipeline.classList.remove('jobber-loading');
+        pipeline.classList.add('jobber-run-2');
+        if (loopTimeout) {
+          clearTimeout(loopTimeout);
+        }
+        loopTimeout = setTimeout(runPipeline, 2000);
+      }, 1750);
+    }, 900);
+  };
+
+    if (button) {
+      button.addEventListener('click', () => {
+        runPipeline();
+      });
+    }
+
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0]?.isIntersecting) {
+            runPipeline();
+          } else if (loopTimeout) {
+            clearTimeout(loopTimeout);
+            loopTimeout = null;
+          }
+        },
+        { threshold: 0.35 }
+      );
+      observer.observe(pipeline);
+    } else {
+      runPipeline();
+    }
+  }
+
   const onLoad = function () {
     let lastKnownScrollPosition = window.scrollY;
     let ticking = true;
@@ -51,7 +105,9 @@ import { UI } from 'astrowind:config';
       document.getElementById('header')?.classList.remove('expanded');
       document.getElementById('header')?.classList.remove('bg-page');
       document.querySelector('#header nav')?.classList.add('hidden');
-      document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
+      if (hasMobileMenu()) {
+        document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
+      }
     });
 
     attachEvent('[data-aw-toggle-menu]', 'click', function (_, elem) {
@@ -116,7 +172,9 @@ import { UI } from 'astrowind:config';
       document.getElementById('header')?.classList.remove('expanded');
       document.getElementById('header')?.classList.remove('bg-page');
       document.querySelector('#header nav')?.classList.add('hidden');
-      document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
+      if (hasMobileMenu()) {
+        document.querySelector('#header > div > div:last-child')?.classList.add('hidden');
+      }
     });
 
     function applyHeaderStylesOnScroll() {
@@ -141,6 +199,8 @@ import { UI } from 'astrowind:config';
         ticking = true;
       }
     });
+
+    initJobberPipeline();
   };
   const onPageShow = function () {
     document.documentElement.classList.add('motion-safe:scroll-smooth');
