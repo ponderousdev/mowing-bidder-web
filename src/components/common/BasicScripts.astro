@@ -57,18 +57,18 @@ import { UI } from 'astrowind:config';
       void pipeline.offsetWidth;
       pipeline.classList.remove('jobber-reset');
       pipeline.classList.add('jobber-run-1');
-    window.setTimeout(() => {
-      pipeline.classList.add('jobber-loading');
       window.setTimeout(() => {
-        pipeline.classList.remove('jobber-loading');
-        pipeline.classList.add('jobber-run-2');
-        if (loopTimeout) {
-          clearTimeout(loopTimeout);
-        }
-        loopTimeout = setTimeout(runPipeline, 2000);
-      }, 1750);
-    }, 900);
-  };
+        pipeline.classList.add('jobber-loading');
+        window.setTimeout(() => {
+          pipeline.classList.remove('jobber-loading');
+          pipeline.classList.add('jobber-run-2');
+          if (loopTimeout) {
+            clearTimeout(loopTimeout);
+          }
+          loopTimeout = setTimeout(runPipeline, 2000);
+        }, 1750);
+      }, 900);
+    };
 
     if (button) {
       button.addEventListener('click', () => {

@@ -20,10 +20,7 @@ const {
 ---
 
 <section
-  class:list={[
-    'relative not-prose',
-    imageOnTop ? '-mt-36 md:-mt-[320px]' : 'md:-mt-[76px]',
-  ]}
+  class:list={['relative not-prose', imageOnTop ? '-mt-36 md:-mt-[320px]' : 'md:-mt-[76px]']}
   {...id ? { id } : {}}
 >
   <div class="absolute inset-0 pointer-events-none" aria-hidden="true">
@@ -32,36 +29,26 @@ const {
     </slot>
   </div>
   <div class="relative max-w-7xl mx-auto px-4 sm:px-6">
-    <div
-      class:list={[
-        'pointer-events-none',
-        imageOnTop ? 'pt-0' : 'pt-0 md:pt-[76px]',
-      ]}
-    ></div>
-    <div
-      class:list={[
-        imageOnTop ? 'pt-0 pb-12 md:pb-16' : 'py-12 md:py-20',
-      ]}
-    >
+    <div class:list={['pointer-events-none', imageOnTop ? 'pt-0' : 'pt-0 md:pt-[76px]']}></div>
+    <div class:list={[imageOnTop ? 'pt-0 pb-12 md:pb-16' : 'py-12 md:py-20']}>
       {
-        imageOnTop &&
-          image && (
-            <div class="relative m-auto max-w-5xl pb-10 md:pb-12 -mt-24 md:-mt-12 lg:-mt-32">
-              {typeof image === 'string' ? (
-                <Fragment set:html={image} />
-              ) : (
-                <Image
-                  class="mx-auto rounded-md w-full max-h-32 md:max-h-28 lg:max-h-36 object-contain"
-                  widths={[400, 768, 1024, 2040]}
-                  sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                  loading="eager"
-                  width={1024}
-                  height={576}
-                  {...image}
-                />
-              )}
-            </div>
-          )
+        imageOnTop && image && (
+          <div class="relative m-auto max-w-5xl pb-10 md:pb-12 -mt-24 md:-mt-12 lg:-mt-32">
+            {typeof image === 'string' ? (
+              <Fragment set:html={image} />
+            ) : (
+              <Image
+                class="mx-auto rounded-md w-full max-h-32 md:max-h-28 lg:max-h-36 object-contain"
+                widths={[400, 768, 1024, 2040]}
+                sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                loading="eager"
+                width={1024}
+                height={576}
+                {...image}
+              />
+            )}
+          </div>
+        )
       }
       <div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
         {
@@ -109,28 +96,24 @@ const {
       </div>
       {
         !imageOnTop && (
-          <div
-            class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade"
-          >
-            {
-              image && (
-                <div class="relative m-auto max-w-5xl">
-                  {typeof image === 'string' ? (
-                    <Fragment set:html={image} />
-                  ) : (
-                    <Image
-                      class="mx-auto rounded-md w-full"
-                      widths={[400, 768, 1024, 2040]}
-                      sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
-                      loading="eager"
-                      width={1024}
-                      height={576}
-                      {...image}
-                    />
-                  )}
-                </div>
-              )
-            }
+          <div class="intersect-once intersect-no-queue intersect-quarter motion-safe:md:opacity-0 motion-safe:md:intersect:animate-fade">
+            {image && (
+              <div class="relative m-auto max-w-5xl">
+                {typeof image === 'string' ? (
+                  <Fragment set:html={image} />
+                ) : (
+                  <Image
+                    class="mx-auto rounded-md w-full"
+                    widths={[400, 768, 1024, 2040]}
+                    sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
+                    loading="eager"
+                    width={1024}
+                    height={576}
+                    {...image}
+                  />
+                )}
+              </div>
+            )}
           </div>
         )
       }

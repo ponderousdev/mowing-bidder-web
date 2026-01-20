@@ -61,12 +61,14 @@ const metadata = {
         classes={{ container: 'max-w-3xl' }}
       />
       <div class="mt-6 grid gap-4 sm:grid-cols-3">
-        {['New lead created', 'Address updated', 'Price sent back'].map((item) => (
-          <div class="rounded-2xl border border-gray-200/60 bg-white/90 p-4 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80">
-            <p class="text-xs uppercase tracking-wide text-muted">Trigger</p>
-            <p class="mt-2 font-semibold">{item}</p>
-          </div>
-        ))}
+        {
+          ['New lead created', 'Address updated', 'Price sent back'].map((item) => (
+            <div class="rounded-2xl border border-gray-200/60 bg-white/90 p-4 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80">
+              <p class="text-xs uppercase tracking-wide text-muted">Trigger</p>
+              <p class="mt-2 font-semibold">{item}</p>
+            </div>
+          ))
+        }
       </div>
     </WidgetWrapper>
 
@@ -77,26 +79,38 @@ const metadata = {
         subtitle="Let homeowners request quotes without leaving your site, powered by the same pricing formula."
         classes={{ container: 'max-w-3xl' }}
       />
-      <div class="mt-6 rounded-2xl border border-gray-200/60 bg-white/90 p-6 shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80">
+      <div
+        class="mt-6 rounded-2xl border border-gray-200/60 bg-white/90 p-6 shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80"
+      >
         <div class="grid gap-6">
-          <div class="instant-form relative rounded-xl border border-gray-200/60 bg-white/95 p-4 shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1a1a1a]">
+          <div
+            class="instant-form relative rounded-xl border border-gray-200/60 bg-white/95 p-4 shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1a1a1a]"
+          >
             <p class="text-xs uppercase tracking-wide text-muted">Instant price form</p>
             <div class="mt-4 space-y-3">
-              <div class="rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]">
+              <div
+                class="rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]"
+              >
                 <p class="text-[11px] uppercase tracking-wide text-muted">Property address</p>
                 <div class="instant-input mt-1" data-instant-typed>
                   <span class="instant-typed" aria-hidden="true"></span>
                   <span class="instant-caret" aria-hidden="true"></span>
                 </div>
               </div>
-              <div class="instant-submit relative inline-flex w-full items-center justify-center rounded-full border border-gray-400 bg-transparent px-5 py-2 text-sm font-semibold text-page">
+              <div
+                class="instant-submit relative inline-flex w-full items-center justify-center rounded-full border border-gray-400 bg-transparent px-5 py-2 text-sm font-semibold text-page"
+              >
                 Submit for instant price
               </div>
-              <div class="instant-price rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]">
+              <div
+                class="instant-price rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]"
+              >
                 <p class="text-[11px] uppercase tracking-wide text-muted">Instant price</p>
                 <p class="mt-1 text-lg font-semibold text-heading">$54 / visit</p>
               </div>
-              <div class="instant-price rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]">
+              <div
+                class="instant-price rounded-lg border border-gray-200/60 bg-white px-3 py-2 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#121212]"
+              >
                 <p class="text-[11px] uppercase tracking-wide text-muted">Bi-weekly price</p>
                 <p class="mt-1 text-lg font-semibold text-heading">$80 / visit</p>
               </div>
@@ -112,7 +126,6 @@ const metadata = {
         </p>
       </div>
     </WidgetWrapper>
-
   </main>
   <Footer />
 </Layout>
@@ -191,7 +204,10 @@ const metadata = {
   }
 
   .instant-submit {
-    transition: box-shadow 200ms ease, transform 200ms ease, border-color 200ms ease;
+    transition:
+      box-shadow 200ms ease,
+      transform 200ms ease,
+      border-color 200ms ease;
     animation: none;
   }
 
