@@ -46,12 +46,12 @@ const {
       {
         imageOnTop &&
           image && (
-            <div class="relative m-auto max-w-5xl pb-10 md:pb-12 -mt-24 md:-mt-32">
+            <div class="relative m-auto max-w-5xl pb-10 md:pb-12 -mt-24 md:-mt-12 lg:-mt-32">
               {typeof image === 'string' ? (
                 <Fragment set:html={image} />
               ) : (
                 <Image
-                  class="mx-auto rounded-md w-full max-h-32 md:max-h-36 object-contain"
+                  class="mx-auto rounded-md w-full max-h-32 md:max-h-28 lg:max-h-36 object-contain"
                   widths={[400, 768, 1024, 2040]}
                   sizes="(max-width: 767px) 400px, (max-width: 1023px) 768px, (max-width: 2039px) 1024px, 2040px"
                   loading="eager"

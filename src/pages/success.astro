@@ -1,0 +1,25 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import TopNav from '~/components/TopNav.astro';
+import Footer from '~/components/Footer.astro';
+import Button from '~/components/ui/Button.astro';
+
+const metadata = {
+  title: 'Thanks for signing up',
+  description: 'You are on the list for launch updates.',
+};
+---
+
+<Layout metadata={metadata}>
+  <TopNav />
+  <main class="mx-auto w-full max-w-4xl px-4 py-16 text-center sm:px-6">
+    <h1 class="text-4xl font-bold text-heading sm:text-5xl">You are on the list!</h1>
+    <p class="mt-4 text-lg text-muted">
+      Thanks for subscribing. We will send launch updates and early access details soon.
+    </p>
+    <div class="mt-8 flex justify-center">
+      <Button variant="secondary" href="/" text="Back to home" />
+    </div>
+  </main>
+  <Footer />
+</Layout>

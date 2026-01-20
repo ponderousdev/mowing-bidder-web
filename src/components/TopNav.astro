@@ -2,6 +2,7 @@
 import Button from '~/components/ui/Button.astro';
 import ToggleTheme from '~/components/common/ToggleTheme.astro';
 import { getHomePermalink } from '~/utils/permalinks';
+import grassGraphic from '~/assets/images/grass.svg';
 ---
 
 <header
@@ -10,17 +11,39 @@ import { getHomePermalink } from '~/utils/permalinks';
   data-aw-sticky-header
 >
   <div class="absolute inset-0"></div>
-  <div class="relative text-default py-3 px-3 md:px-6 mx-auto w-full max-w-7xl flex items-center justify-between">
-    <a class="flex items-center" href={getHomePermalink()}>
-      <span class="text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">Mowing Bidder</span>
+  <div class="relative text-default py-3 px-3 md:px-6 mx-auto w-full max-w-7xl flex flex-col items-stretch gap-2 md:flex-row md:items-center md:justify-between">
+    <a class="flex items-center mt-6" href={getHomePermalink()}>
+      <span class="relative inline-block leading-none overflow-visible">
+        <img
+          src={grassGraphic.src}
+          alt=""
+          class="absolute left-0 right-0 bottom-full -mb-2 h-20 sm:h-24 w-full object-contain"
+          aria-hidden="true"
+        />
+        <span class="block text-xl sm:text-2xl md:text-xl font-bold text-gray-900 whitespace-nowrap dark:text-white">
+          Mowing Bidder
+        </span>
+      </span>
     </a>
-    <div class="flex items-center gap-2">
+    <div class="flex w-full items-center justify-between gap-2 md:w-auto md:justify-end md:ml-auto">
       <ToggleTheme iconClass="w-5 h-5 md:w-5 md:h-5" />
+      <a
+        class="text-sm font-semibold text-muted hover:text-primary dark:text-slate-300 dark:hover:text-white"
+        href="/planned-features"
+      >
+        Planned Features
+      </a>
+      <Button
+        variant="secondary"
+        href="/#pricing"
+        text="Pricing"
+        class="py-2 px-4 md:py-2.5 md:px-6 font-semibold shadow-none text-sm w-auto"
+      />
       <Button
         variant="primary"
-        href="#get-updates"
+        href="/#get-updates"
         text="Get Updates"
-        class="py-2.5 px-5.5 md:px-6 font-semibold shadow-none text-sm w-auto"
+        class="py-2 px-4 md:py-2.5 md:px-6 font-semibold shadow-none text-sm w-auto"
       />
     </div>
   </div>

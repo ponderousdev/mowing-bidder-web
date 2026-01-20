@@ -1,0 +1,98 @@
+---
+import Layout from '~/layouts/Layout.astro';
+import TopNav from '~/components/TopNav.astro';
+import Footer from '~/components/Footer.astro';
+import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
+import Headline from '~/components/ui/Headline.astro';
+import JobberIntegration from '~/components/JobberIntegration.astro';
+import { Icon } from 'astro-icon/components';
+
+const metadata = {
+  title: 'Planned Features',
+  description: 'A look at features planned for future releases.',
+};
+---
+
+<Layout metadata={metadata}>
+  <TopNav />
+  <main>
+    <WidgetWrapper>
+      <Headline
+        tagline="Planned features"
+        title="What is coming after version one"
+        subtitle="These features are not part of the initial release, but they are on the roadmap and planned for a future update."
+        classes={{ container: 'max-w-3xl' }}
+      />
+      <div class="mt-8 grid gap-4 sm:grid-cols-3">
+        <a
+          class="group rounded-2xl border border-gray-200/60 bg-white/90 p-4 text-left shadow-sm transition hover:border-primary/60 hover:bg-white dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80 dark:hover:border-green-800/70"
+          href="#jobber-integration"
+        >
+          <Icon name="tabler:plug-connected" class="h-8 w-8 text-primary" />
+          <p class="mt-4 text-base font-semibold text-heading">CRM integration</p>
+          <p class="mt-1 text-sm text-muted">Jobber pipeline automation</p>
+        </a>
+        <a
+          class="group rounded-2xl border border-gray-200/60 bg-white/90 p-4 text-left shadow-sm transition hover:border-primary/60 hover:bg-white dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80 dark:hover:border-green-800/70"
+          href="#zapier-integration"
+        >
+          <Icon name="tabler:bolt" class="h-8 w-8 text-primary" />
+          <p class="mt-4 text-base font-semibold text-heading">Zapier integration</p>
+          <p class="mt-1 text-sm text-muted">No-code automations</p>
+        </a>
+        <a
+          class="group rounded-2xl border border-gray-200/60 bg-white/90 p-4 text-left shadow-sm transition hover:border-primary/60 hover:bg-white dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80 dark:hover:border-green-800/70"
+          href="#instant-price-form"
+        >
+          <Icon name="tabler:forms" class="h-8 w-8 text-primary" />
+          <p class="mt-4 text-base font-semibold text-heading">Instant price form</p>
+          <p class="mt-1 text-sm text-muted">On-site quote</p>
+        </a>
+      </div>
+    </WidgetWrapper>
+
+    <JobberIntegration />
+
+    <WidgetWrapper id="zapier-integration">
+      <Headline
+        tagline="Zapier integration"
+        title="Connect Mowing Bidder to the tools you already use."
+        subtitle="Trigger quote creation and pricing updates from your favorite apps without writing any code."
+        classes={{ container: 'max-w-3xl' }}
+      />
+      <div class="mt-6 grid gap-4 sm:grid-cols-3">
+        {['New lead created', 'Address updated', 'Price sent back'].map((item) => (
+          <div class="rounded-2xl border border-gray-200/60 bg-white/90 p-4 text-sm text-heading shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80">
+            <p class="text-xs uppercase tracking-wide text-muted">Trigger</p>
+            <p class="mt-2 font-semibold">{item}</p>
+          </div>
+        ))}
+      </div>
+    </WidgetWrapper>
+
+    <WidgetWrapper id="instant-price-form">
+      <Headline
+        tagline="Instant price form"
+        title="Provide instant pricing right on your website."
+        subtitle="Let homeowners request quotes without leaving your site, powered by the same pricing formula."
+        classes={{ container: 'max-w-3xl' }}
+      />
+      <div class="mt-6 rounded-2xl border border-gray-200/60 bg-white/90 p-6 shadow-sm dark:border-[#2f2f2f]/60 dark:bg-[#1f1f1f]/80">
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-xl border border-gray-200/60 bg-white px-4 py-3 dark:border-[#2f2f2f]/60 dark:bg-[#1a1a1a]">
+            <p class="text-xs uppercase tracking-wide text-muted">Property address</p>
+            <p class="mt-2 text-sm text-heading">123 Greenway Dr, Overland Park, KS</p>
+          </div>
+          <div class="rounded-xl border border-gray-200/60 bg-white px-4 py-3 dark:border-[#2f2f2f]/60 dark:bg-[#1a1a1a]">
+            <p class="text-xs uppercase tracking-wide text-muted">Preferred cadence</p>
+            <p class="mt-2 text-sm text-heading">Weekly or bi-weekly</p>
+          </div>
+        </div>
+        <p class="mt-4 text-sm text-muted">
+          Embed as a simple widget and route submissions directly into your pipeline.
+        </p>
+      </div>
+    </WidgetWrapper>
+  </main>
+  <Footer />
+</Layout>
