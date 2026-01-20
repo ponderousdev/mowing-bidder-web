@@ -57,18 +57,18 @@ import { UI } from 'astrowind:config';
       void pipeline.offsetWidth;
       pipeline.classList.remove('jobber-reset');
       pipeline.classList.add('jobber-run-1');
-    window.setTimeout(() => {
-      pipeline.classList.add('jobber-loading');
       window.setTimeout(() => {
-        pipeline.classList.remove('jobber-loading');
-        pipeline.classList.add('jobber-run-2');
-        if (loopTimeout) {
-          clearTimeout(loopTimeout);
-        }
-        loopTimeout = setTimeout(runPipeline, 2000);
-      }, 1750);
-    }, 900);
-  };
+        pipeline.classList.add('jobber-loading');
+        window.setTimeout(() => {
+          pipeline.classList.remove('jobber-loading');
+          pipeline.classList.add('jobber-run-2');
+          if (loopTimeout) {
+            clearTimeout(loopTimeout);
+          }
+          loopTimeout = setTimeout(runPipeline, 2000);
+        }, 1750);
+      }, 900);
+    };
 
     if (button) {
       button.addEventListener('click', () => {
@@ -91,6 +91,32 @@ import { UI } from 'astrowind:config';
       observer.observe(pipeline);
     } else {
       runPipeline();
+    }
+  }
+
+  function initDemoMock() {
+    const button = document.querySelector('[data-demo-button]');
+    const sqftEl = document.querySelector('[data-demo-sqft]');
+    const weeklyEl = document.querySelector('[data-demo-weekly]');
+    const biweeklyEl = document.querySelector('[data-demo-biweekly]');
+
+    if (!button || !sqftEl || !weeklyEl || !biweeklyEl) return;
+
+    if (!button.dataset.demoBound) {
+      button.dataset.demoBound = 'true';
+      button.addEventListener('click', () => {
+        const sqft = Math.floor(Math.random() * (20000 - 2000 + 1)) + 2000;
+        const weekly = Math.round((sqft * 0.012) / 5) * 5;
+        const biweekly = Math.round((sqft * 0.018) / 5) * 5;
+        const formatCurrency = (value) =>
+          new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(
+            value
+          );
+
+        sqftEl.textContent = `${sqft.toLocaleString()} sq ft`;
+        weeklyEl.textContent = `${formatCurrency(weekly)} / visit`;
+        biweeklyEl.textContent = `${formatCurrency(biweekly)} / visit`;
+      });
     }
   }
 
@@ -201,6 +227,7 @@ import { UI } from 'astrowind:config';
     });
 
     initJobberPipeline();
+    initDemoMock();
   };
   const onPageShow = function () {
     document.documentElement.classList.add('motion-safe:scroll-smooth');
